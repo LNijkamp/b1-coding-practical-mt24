@@ -2,7 +2,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 import numpy as np
 import matplotlib.pyplot as plt
-from terrain import generate_reference_and_limits
+import sys 
+import os
+
+# Add the parent directory of uuv_mission to the Python path
+sys.path.append(os.path.abspath('/Users/lukenijkamp/Library/CloudStorage/OneDrive-Nexus365/Engineering 3rd year/B1 Engineering Computation/Scientific coding/B1 Practical 1/b1-coding-practical-mt24'))
+
+from uuv_mission.terrain import generate_reference_and_limits
 import pandas as pd
 
 class Submarine:
@@ -102,6 +108,7 @@ class ClosedLoop:
             positions[t] = self.plant.get_position()
             observation_t = self.plant.get_depth()
             # Call your controller here
+            actions[t] = self.controller.compute_action(observation_t, mission.reference[t])
             self.plant.transition(actions[t], disturbances[t])
 
         return Trajectory(positions)
