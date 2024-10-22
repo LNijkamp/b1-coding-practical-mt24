@@ -13,8 +13,8 @@ def cost_function(reference, trajectory):
     return np.mean((reference - trajectory) ** 2)
 
 # Define a range of values for K_P and K_D
-K_P_values = np.linspace(0.05, 1.0, 10)
-K_D_values = np.linspace(0.05, 1.0, 10)
+K_P_values = np.linspace(0.0, 1.0, 20)
+K_D_values = np.linspace(0.0, 1.0, 20)
 
 # Load the mission
 mission = Mission.from_csv("/Users/lukenijkamp/Library/CloudStorage/OneDrive-Nexus365/Engineering 3rd year/B1 Engineering Computation/Scientific coding/B1 Practical 1/b1-coding-practical-mt24/data/mission.csv")
